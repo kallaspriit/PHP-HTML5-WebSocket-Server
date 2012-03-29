@@ -1,0 +1,133 @@
+BODY {
+	margin: 0px;
+	width: 100%;
+	height: 100%;
+	background-color: #000000;
+	background-image: url(../images/body-bg.jpg);
+	background-position: center top;
+	background-repeat: no-repeat;
+}
+#login-form {
+	position: absolute;
+	width: 400px;
+	padding: 50px;
+	background-color: rgba(0, 0, 0, 0.75);
+	left: 50%;
+	top: 50%;
+	margin-left: -200px;
+	margin-top: -100px;
+	border-radius: 10px;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+}
+#status {
+	height: 40px;
+	line-height: 40px;
+	font-size: 40px;
+	font-family: Arial, sans-serif;
+	color: rgba(255, 255, 255, 0.5);
+	text-align: center;
+}
+#name-container {
+	display: none;
+}
+#user-name {
+	font-size: 40px;
+	font-family: Tahoma;
+	width: 350px;
+	border-top: 2px solid #000000;
+	border-left: 2px solid #000000;
+	border-bottom: 2px solid #111111;
+	border-right: 2px solid #111111;
+	background-color: rgba(255, 255, 255, 0.05);
+	padding: 10px 20px;
+	color: rgba(255, 255, 255, 0.5);
+	text-align: center;
+	outline: none;
+}
+#user-name.hint {
+	font-style: italic;
+}
+#top-container {
+	position: absolute;
+	width: 1200px;
+	height: 600px;
+	left: 50%;
+	top: 50%;
+	bottom: 0px;
+	margin-left: -600px;
+	margin-top: -300px;
+	display: none;
+}
+#main-container {
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	width: 800px;
+	height: 600px;
+	background-color: rgba(0, 0, 0, 0.25);
+	box-shadow: 0px 0px 60px #090909;
+	-moz-box-shadow: 0px 0px 10px #000000;
+	-webkit-box-shadow: 0px 0px 10px #000000;
+	border-radius: 20px 0px 0px 0px;
+	-moz-border-radius: 20px 0px 0px 0px;
+	-webkit-border-radius: 20px 0px 0px 0px;
+}
+#canvas-container {
+	width: 800px;
+	height: 600px;
+}
+#chat-container {
+	position: absolute;
+	width: 380px;
+	height: 600px;
+	left: 820px;
+	top: 0px;
+	background-color: rgba(0, 0, 0, 0.5);
+	box-shadow: 0px 0px 60px #090909;
+	-moz-box-shadow: 0px 0px 10px #000000;
+	-webkit-box-shadow: 0px 0px 10px #000000;
+	-moz-border-radius: 0px 0px 10px #000000;
+	border-radius: 0px 0px 20px 0px;
+	-moz-border-radius: 0px 0px 20px 0px;
+	-webkit-border-radius: 0px 0px 20px 0px;
+}
+#users {
+
+}
+.user {
+	height: 40px;
+	line-height: 40px;
+	padding: 0px 0px;
+	font-family: Tahoma, Geneva, sans-serif;
+	color: #FFFFFF;
+	font-size: 16px;
+	font-weight: bold;
+	text-decoration: none;
+	background-color: rgba(0, 0, 0, 0.15);
+	text-shadow: 1px 1px 1px #000000;
+	border-top: 1px solid #090909;
+	border-bottom: 1px solid #000000;
+}
+.user DIV {
+	display: block;
+	float: left;
+	width: 14px;
+	height: 14px;
+	margin: 8px;
+	padding: 3px;
+	border-top: 1px solid #000000;
+	border-left: 1px solid #000000;
+	border-bottom: 1px solid #090909;
+	border-right: 1px solid #090909;
+}
+.user DIV SPAN {
+	display: block;
+	float: left;
+	width: 14px;
+	height: 14px;
+}
+#canvas {
+	width: 800px;
+	height: 600px;
+}

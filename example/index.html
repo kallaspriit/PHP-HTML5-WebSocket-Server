@@ -1,0 +1,92 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <title>Web sockets collaborative drawing</title>
+		<script type="text/javascript" src="lib/jquery/jquery-1.4.4.dev.js"></script>
+		<script type="text/javascript" src="lib/jquery/jquery-css-transform.js"></script>
+		<script type="text/javascript" src="lib/jquery/jquery-animate-css-rotate-scale.js"></script>
+		<script type="text/javascript" src="lib/jquery/jquery-json.js"></script>
+		<script type="text/javascript" src="lib/jquery/jquery.easing.1.3.js"></script>
+		<script type="text/javascript" src="lib/canvas/canvas-1.1.dev.js"></script>
+		<script type="text/javascript" src="lib/draw/main.js"></script>
+		<link rel="stylesheet" type="text/css" href="style/layout.css" />
+    </head>
+    <body>
+		<div id="top-container">
+			<div id="main-container">
+				<div id="canvas-container">
+					<canvas id="canvas"></canvas>
+				</div>
+			</div>
+			<div id="chat-container">
+				<div id="users">
+
+				</div>
+			</div>
+		</div>
+		<div id="login-form">
+			<div id="status">Connecting...</div>
+			<div id="name-container">
+				<input type="text" name="user-name" id="user-name" maxlength="18" class="hint" value="Enter name"/>
+			</div>
+		</div>
+		<script type="text/javascript">
+
+		$(document).ready(function() {
+			var collabDraw = new CollabDraw('ws://socket', 8999);
+			collabDraw.init();
+
+			$('#user-name').focus(function() {
+				if ($(this).val() == 'Enter name') {
+					$(this).val('').removeClass('hint');
+				}
+			});
+
+			$('#user-name').blur(function() {
+				if ($(this).val() == '') {
+					$(this).val('Enter name').addClass('hint');
+				}
+			})
+
+			$('#user-name').keypress(function(e) {
+				if(e.keyCode == 13) {
+					$('#user-name').blur();
+					
+					if ($(this).val().length >= 2) {
+						collabDraw.setName($(this).val());
+
+						//var position = $('#login-form').position();
+
+						$('#login-form').stop().animate({
+							rotate: '-=180deg',
+							scale: '0.0'
+						}, 'slow', function() {
+							$('#login-form').hide();
+							$('#login-form').rotate(0);
+							$('#login-form').scale(1);
+							
+							$('#top-container').fadeIn(300, function() {
+								collabDraw.initCanvas();
+							});
+						});
+					}
+				} else {
+					/*
+					if (e.keyCode != 32) {
+						$('#login-form').stop().animate({
+							scale: '0.98'
+						}, 100, function() {
+							$('#login-form').animate({
+								scale: '1.0'
+							}, 100);
+						});
+					}
+					*/
+				}
+			});
+		});
+
+		</script>
+    </body>
+</html>

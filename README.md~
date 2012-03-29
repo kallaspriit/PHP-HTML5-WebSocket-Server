@@ -9,9 +9,3 @@ Features
 * Client abstraction with attributes
 * Supports multiple listeners
 * PHP 5.3+ compatible
-
-
-Example
--------
-Includes a little example where number of users can join a simple drawing application.
-![PHP-WSS Example](http://dl.dropbox.com/u/8855759/php-wss/draw.png)
