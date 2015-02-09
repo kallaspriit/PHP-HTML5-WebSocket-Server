@@ -208,7 +208,8 @@ class ServerController {
 			'x1' => $command->getParam('x1'),
 			'y1' => $command->getParam('y1'),
 			'x2' => $command->getParam('x2'),
-			'y2' => $command->getParam('y2')
+			'y2' => $command->getParam('y2'),
+			'ls' => $command->getParam('ls')
 		);
 
 		$senderLines = $sender->get('graphics.lines', array());
@@ -225,7 +226,8 @@ class ServerController {
 				'x1' => $command->getParam('x1'),
 				'y1' => $command->getParam('y1'),
 				'x2' => $command->getParam('x2'),
-				'y2' => $command->getParam('y2')
+				'y2' => $command->getParam('y2'),
+				'ls' => $command->getParam('ls')
 			)));
 		}
 	}
