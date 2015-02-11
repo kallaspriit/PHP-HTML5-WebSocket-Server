@@ -172,7 +172,7 @@ var CollabDraw = function(host, port) {
 		this.canvas.scene.lastY = null;
 
 		this.canvas.onMouseScroll = function(delta, absolute) {
-			this.scene.lineWidth += delta;
+			this.scene.lineWidth += parseInt(delta);
 
 			if (this.scene.lineWidth < 1) {
 				this.scene.lineWidth = 1;
@@ -184,7 +184,7 @@ var CollabDraw = function(host, port) {
 		this.canvas.onMouseMove = function(x, y) {
 			if (this.mouse.left) {
 				if (this.scene.lastX != null) {
-					this.scene.app.strokeLine(this.scene.lastX, this.scene.lastY, x, y);
+					this.scene.app.strokeLine(this.scene.lastX, this.scene.lastY, x, y,this.scene.lineWidth);
 
 					//this.strokeLine(this.scene.lastX, this.scene.lastY, x, y);
 
@@ -266,12 +266,13 @@ var CollabDraw = function(host, port) {
 		this[actionName](command);
 	}
 
-	this.strokeLine = function(x1, y1, x2, y2) {
+	this.strokeLine = function(x1, y1, x2, y2, ls) {
 		this.socket.send(new SocketCommand('server', 'stroke-line', {
 			x1: x1,
 			y1: y1,
 			x2: x2,
-			y2: y2
+			y2: y2,
+			ls: ls
 		}))
 	}
 
@@ -309,7 +310,7 @@ var CollabDraw = function(host, port) {
 		for (var key in lines) {
 			var line = lines[key];
 
-			this.renderStrokeLine(line.color, line.x1, line.y1, line.x2, line.y2);
+			this.renderStrokeLine(line.color, line.x1, line.y1, line.x2, line.y2, line.ls);
 		}
 	}
 
@@ -322,7 +323,8 @@ var CollabDraw = function(host, port) {
 			command.getParam('x1'),
 			command.getParam('y1'),
 			command.getParam('x2'),
-			command.getParam('y2')
+			command.getParam('y2'),
+			command.getParam('ls')
 		)
 	}
 
@@ -365,14 +367,16 @@ var CollabDraw = function(host, port) {
 		$('#user-' + userId + ' SPAN.name').html(name);
 	}
 
-	this.renderStrokeLine = function(color, x1, y1, x2, y2) {
+	this.renderStrokeLine = function(color, x1, y1, x2, y2, ls) {
 		this.canvas.save();
 		this.canvas.strokeColor(color);
+		this.canvas.lineWidth(ls);
 		this.canvas.strokeLine(
 			x1,
 			y1,
 			x2,
-			y2
+			y2,
+			ls
 		);
 		this.canvas.restore();
 	}
